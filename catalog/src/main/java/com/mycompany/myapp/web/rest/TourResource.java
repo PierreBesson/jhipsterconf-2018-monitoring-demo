@@ -6,6 +6,7 @@ import com.mycompany.myapp.repository.TourRepository;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +38,43 @@ public class TourResource {
     public TourResource(TourRepository tourRepository) {
         this.tourRepository = tourRepository;
     }
+
+
+    /**
+     * GET  /reservations/triggerError : just throws an exception
+     *
+     * @return never
+     */
+    @GetMapping("/tours/demo/triggerError")
+    @Timed
+    public ResponseEntity<Tour> triggerError() throws Exception {
+        log.debug("DEMO: Launch an exception !");
+        throw new Exception("demo");
+    }
+
+    /**
+     * POST  /reservations/createRandom : create random reservatoin
+     *
+     * @return never
+     */
+    @PostMapping("/tours/demo/createRandom")
+    @Timed
+    public ResponseEntity<Tour> createRandom() throws Exception {
+        log.debug("DEMO: Create random reservation");
+        Tour tour = new Tour()
+            .description(RandomStringUtils.randomAlphabetic(100))
+            .tourName(RandomStringUtils.randomAlphabetic(100))
+            .duration(RandomStringUtils.randomNumeric(2))
+            .fromDate(ZonedDateTime.now())
+            .toDate(ZonedDateTime.now().plus(10, ChronoUnit.DAYS))
+            .type(RandomStringUtils.randomAlphabetic(10));
+
+        Tour result = tourRepository.save(tour);
+        return ResponseEntity.created(new URI("/api/tours/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
 
     /**
      * POST  /tours : Create a new tour.

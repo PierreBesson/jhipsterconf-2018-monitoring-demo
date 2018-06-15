@@ -1,5 +1,6 @@
 package com.mycompany.myapp.config;
 
+import feign.Logger;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,6 @@ public class FeignConfiguration {
      */
     @Bean
     feign.Logger.Level feignLoggerLevel() {
-        return feign.Logger.Level.BASIC;
+        return Logger.Level.FULL;
     }
 }

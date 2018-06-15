@@ -648,7 +648,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>booking</repository>
+                    <repository>pbesson/booking</repository>
                     <contextDirectory>${project.build.directory}</contextDirectory>
                 </configuration>
             </plugin>

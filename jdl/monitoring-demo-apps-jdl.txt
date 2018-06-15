@@ -1,0 +1,27 @@
+application {
+  config {
+    baseName gateway,
+    applicationType gateway,
+    serverPort 8080
+  }
+}
+
+application {
+  config {
+    baseName booking,
+    applicationType microservice,
+    prodDatabaseType mysql,
+    serverPort 8081
+  }
+  entities Reservation
+}
+
+application {
+  config {
+    baseName catalog,
+    applicationType microservice,
+    prodDatabaseType postgresql,
+    serverPort 8082
+  }
+  entities Tour
+}

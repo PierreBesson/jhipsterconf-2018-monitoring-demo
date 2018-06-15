@@ -1,0 +1,8 @@
+entity Reservation {
+  tourCode Long required,
+  personName String required,
+  paid Boolean required
+  notes String
+}
+
+microservice * with booking

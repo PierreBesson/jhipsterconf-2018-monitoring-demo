@@ -1,0 +1,10 @@
+{
+  "simulation": "ReservationGatlingTest",
+  "simulationId": "reservationgatlingtest",
+  "start": 1529437754973,
+  "description": "",
+  "scenarios": ["Users"],
+  "assertions": [
+
+  ]
+}

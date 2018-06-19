@@ -9,6 +9,7 @@ services:
             - SPRING_DATASOURCE_URL=jdbc:mysql://booking-mysql:3306/booking?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=30
             - JHIPSTER_REGISTRY_PASSWORD=admin
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
     booking-mysql:
         image: mysql:5.7.20
         environment:
@@ -28,6 +29,7 @@ services:
             - SPRING_DATA_MONGODB_DATABASE=catalog
             - JHIPSTER_SLEEP=30
             - JHIPSTER_REGISTRY_PASSWORD=admin
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
     catalog-mongodb:
         image: mongo:3.6.3
 
@@ -40,6 +42,7 @@ services:
             - SPRING_DATASOURCE_URL=jdbc:mysql://gateway-mysql:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=30
             - JHIPSTER_REGISTRY_PASSWORD=admin
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
         ports:
             - 8080:8080
     gateway-mysql:

@@ -7,7 +7,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 6dea88fd519d4447d35973da7fc1a7ab2f3a68ec
+                secret: "{cipher}839a1248ab43b846940f12eacfca34c239c4419dfded7808d964fff513a1af3e06fd454978e81c63ea940cd4bb419fbf"
     logging:
         logstash: # forward logs to ELK
             enabled: true

@@ -1,4 +1,7 @@
 #common configuration shared between all applications
+
+_secret: "{cipher}68df8f637f26509418986d173572ab07bebe786e862b5e8a4f39cfad5ad3e419"
+
 configserver:
     name: Docker JHipster Registry
     status: Connected to the JHipster Registry running in Docker
@@ -7,7 +10,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: "{cipher}839a1248ab43b846940f12eacfca34c239c4419dfded7808d964fff513a1af3e06fd454978e81c63ea940cd4bb419fbf"
+                secret: "{cipher}68df8f637f26509418986d173572ab07bebe786e862b5e8a4f39cfad5ad3e419"
     logging:
         logstash: # forward logs to ELK
             enabled: true

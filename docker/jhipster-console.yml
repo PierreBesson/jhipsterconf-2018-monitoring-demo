@@ -14,7 +14,7 @@ services:
             - INPUT_UDP_PORT=5000
             - ELASTICSEARCH_HOST=jhipster-elasticsearch
             - ELASTICSEARCH_PORT=9200
-            - LOGSTASH_DEBUG=false
+            - LOGSTASH_DEBUG=true
         ports:
             - 5000:5000
             - 5000:5000/udp

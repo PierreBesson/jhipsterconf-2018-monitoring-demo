@@ -21,11 +21,14 @@ import net.logstash.logback.stacktrace.ShortenedThrowableConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RefreshScope
+@ConditionalOnProperty("eureka.client.enabled")
 public class LoggingConfiguration {
 
     private static final String LOGSTASH_APPENDER_NAME = "LOGSTASH";
@@ -44,12 +47,15 @@ public class LoggingConfiguration {
 
     private final JHipsterProperties jHipsterProperties;
 
+    private final EurekaInstanceConfigBean eurekaInstanceConfigBean;
+
     public LoggingConfiguration(@Value("${spring.application.name}") String appName, @Value("${server.port}") String serverPort,
-         @Value("${info.project.version:}") String version, JHipsterProperties jHipsterProperties) {
+                                @Value("${info.project.version:}") String version, JHipsterProperties jHipsterProperties, EurekaInstanceConfigBean eurekaInstanceConfigBean) {
         this.appName = appName;
         this.serverPort = serverPort;
         this.version = version;
         this.jHipsterProperties = jHipsterProperties;
+        this.eurekaInstanceConfigBean = eurekaInstanceConfigBean;
         if (jHipsterProperties.getLogging().getLogstash().isEnabled()) {
             addLogstashAppender(context);
             addContextListener(context);
@@ -73,7 +79,7 @@ public class LoggingConfiguration {
         logstashAppender.setContext(context);
         String optionalFields = "";
         String customFields = "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"," +
-            optionalFields + "\"version\":\"" + version + "\"}";
+            optionalFields + "\"version\":\"" + version + "\"instance_id\":\"" + eurekaInstanceConfigBean.getInstanceId() + "\"}";
 
         // More documentation is available at: https://github.com/logstash/logstash-logback-encoder
         LogstashEncoder logstashEncoder = new LogstashEncoder();

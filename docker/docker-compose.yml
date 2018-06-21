@@ -1,7 +1,7 @@
 version: '2'
 services:
     booking-app:
-        image: pbesson/booking:latest
+        image: pbesson/booking:jhipsterconf
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
@@ -20,7 +20,7 @@ services:
             --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
 
     catalog-app:
-        image: pbesson/catalog:latest
+        image: pbesson/catalog:jhipsterconf
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
@@ -34,7 +34,7 @@ services:
         image: mongo:3.6.3
 
     gateway-app:
-        image: pbesson/gateway:latest
+        image: pbesson/gateway:jhipsterconf
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka

@@ -10,7 +10,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: "{cipher}68df8f637f26509418986d173572ab07bebe786e862b5e8a4f39cfad5ad3e419"
+                secret: my-secret-jwt-token
     logging:
         logstash: # forward logs to ELK
             enabled: true
